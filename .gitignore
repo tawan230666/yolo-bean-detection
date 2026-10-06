@@ -1,0 +1,29 @@
+# Python environments and caches
+bean_env/
+label_env/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local credentials and Label Studio application data
+.env
+.env.*
+!.env.example
+label-studio-data/
+*.pem
+*.key
+
+# Generated training output and backups
+runs/
+dataset_backups/
+models/best_*.pt
+models/*.pending.pt
+*.cache
+
+# Operating system files
+.DS_Store
+
+# Empty duplicate script with a trailing space
+01-export_dataset.py\ 

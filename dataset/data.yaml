@@ -1,0 +1,10 @@
+path: /Users/tawan/my_project/bean/dataset
+train: images/train
+val: images/val
+
+names:
+  0: "ถั่วลิสง"
+  1: "ถั่วปากอ้า"
+  2: "ถั่วลันเตาเขียว"
+  3: "ถั่วลันเตาเขียวชุบแป้ง"
+  4: "แป้งสาลี"
