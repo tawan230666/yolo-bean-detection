@@ -11,8 +11,8 @@ from urllib.parse import urlparse, parse_qs, unquote
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-IMAGES_DIR = Path("/Users/tawan/my_project/bean/frame/images")
-OUTPUT_DIR = Path("/Users/tawan/my_project/bean/dataset")
+IMAGES_DIR = SCRIPT_DIR / "frame" / "images"
+OUTPUT_DIR = SCRIPT_DIR / "dataset"
 
 TRAIN_SPLIT = 0.8
 SEED = 42
@@ -233,8 +233,9 @@ def save_task(task, split):
 def create_data_yaml():
     yaml_path = OUTPUT_DIR / "data.yaml"
 
+    # No absolute "path:" key: Ultralytics resolves the splits relative to
+    # this file, so the dataset stays portable across machines.
     lines = [
-        f"path: {OUTPUT_DIR}",
         "train: images/train",
         "val: images/val",
         "",

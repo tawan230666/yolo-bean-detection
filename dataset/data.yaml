@@ -1,4 +1,4 @@
-path: /Users/tawan/my_project/bean/dataset
+# Paths are relative to this file, so the dataset works on any machine.
 train: images/train
 val: images/val
 

@@ -1,3 +1,4 @@
+import torch
 from ultralytics import YOLO
 from pathlib import Path
 import shutil
@@ -8,8 +9,19 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 MODEL_PATH = SCRIPT_DIR / "yolo26n.pt"
 DATA_PATH = SCRIPT_DIR / "dataset" / "data.yaml"
 
+def pick_device():
+    """Use the fastest available accelerator: NVIDIA GPU, Apple Silicon, then CPU."""
+    if torch.cuda.is_available():
+        return 0
+    if torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
+
+
 def main():
     model = YOLO(str(MODEL_PATH))
+    device = pick_device()
+    print(f"Training on: {device}")
 
     results = model.train(
         data=str(DATA_PATH),
@@ -19,7 +31,7 @@ def main():
 
         optimizer="auto",
 
-        device="mps",
+        device=device,
 
         degrees=7.0,
         shear=5.0,
